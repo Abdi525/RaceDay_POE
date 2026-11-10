@@ -6,3 +6,6 @@ result recording, participant event entries, results and profile image upload.
 
 The API uses SQL Server LocalDB and the database name RaceDayAU.
 The API creates the database on first startup using EnsureCreated().
+
+Part3_MVC/appsettings.json contains:
+ApiSettings:BaseUrl = http://localhost:5122/api/

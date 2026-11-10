@@ -13,3 +13,5 @@ ApiSettings:BaseUrl = http://localhost:5122/api/
 The API now issues JWT tokens at /api/auth/login. 
 The MVC application stores the token in its server-side session and sends it as a Bearer token with protected API requests. 
 API role checks use the token's role claim.
+
+My part MVC was not connecting to my API but I fixed the issue by going through every part on at a time to get to it.

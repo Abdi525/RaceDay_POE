@@ -25,7 +25,7 @@ namespace POE_P3_WEB.Controllers
 
             try
             {
-                using var response = await _apiService.PostAsync("auth/login", model);
+                using var response = await _apiService.PostAsync("api/auth/login", model);
                 if (!response.IsSuccessStatusCode)
                 {
                     ModelState.AddModelError(string.Empty, "Invalid email or password.");
@@ -57,11 +57,12 @@ namespace POE_P3_WEB.Controllers
                     ? RedirectToAction("Dashboard", "Organiser")
                     : RedirectToAction("BrowseEvents", "Participant");
             }
-            catch (HttpRequestException)
+            catch (HttpRequestException ex)
             {
-                ModelState.AddModelError(string.Empty, "Could not connect to the API. Check that your API is running and that ApiSettings:BaseUrl is correct.");
+                ModelState.AddModelError(string.Empty, "Could not connect to the API. Check that your API is running.");
                 return View("~/Views/Auth/Login.cshtml", model);
             }
+
             catch (JsonException)
             {
                 ModelState.AddModelError(string.Empty, "The API returned an invalid login response.");
@@ -80,7 +81,7 @@ namespace POE_P3_WEB.Controllers
 
             try
             {
-                using var response = await _apiService.PostAsync("auth/register", model);
+                using var response = await _apiService.PostAsync("api/auth/register", model);
                 if (response.IsSuccessStatusCode)
                 {
                     TempData["Message"] = "Registration successful. Please log in.";
@@ -89,11 +90,18 @@ namespace POE_P3_WEB.Controllers
 
                 ModelState.AddModelError(string.Empty, "Registration failed. Check the details and try again.");
             }
-            catch (HttpRequestException)
+            catch (Exception ex)
             {
-                ModelState.AddModelError(string.Empty, "Could not connect to the API. Check that your API is running.");
-            }
+                var error = ex.Message;
 
+                if (ex.InnerException != null)
+                    error += " | Inner error: " + ex.InnerException.Message;
+
+                ModelState.AddModelError(
+                    string.Empty,
+                    "TECHNICAL ERROR: " + error
+                );
+            }
             return View("~/Views/Auth/Register.cshtml", model);
         }
 

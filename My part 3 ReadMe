@@ -9,3 +9,7 @@ The API creates the database on first startup using EnsureCreated().
 
 Part3_MVC/appsettings.json contains:
 ApiSettings:BaseUrl = http://localhost:5122/api/
+
+The API now issues JWT tokens at /api/auth/login. 
+The MVC application stores the token in its server-side session and sends it as a Bearer token with protected API requests. 
+API role checks use the token's role claim.

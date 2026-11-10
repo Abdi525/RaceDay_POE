@@ -4,3 +4,5 @@ Event banner images and participant profile images are stored locally in Part3_M
 Part 3 includes organiser event management, category management, participant enrolment lists,
 result recording, participant event entries, results and profile image upload.
 
+The API uses SQL Server LocalDB and the database name RaceDayAU.
+The API creates the database on first startup using EnsureCreated().

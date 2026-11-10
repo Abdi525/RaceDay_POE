@@ -1,0 +1,40 @@
+﻿@model IEnumerable<POE_P3_WEB.Models.ViewsModels.ResultViewModel>
+@{
+    ViewData["Title"] = "My Results";
+}
+
+<h2>My Race Results</h2>
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Category</th>
+            <th>Entrance ID</th>
+            <th>Status</th>
+            <th>Overall Rank</th>
+            <th>Category Rank</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var res in Model)
+        {
+            <tr>
+                <td>@res.EventName</td>
+                <td>@res.CategoryName</td>
+                <td>@res.EntranceId</td>
+                <td>
+                    @if (res.FinishStatus == "Finished")
+                    {
+                        <span class="badge bg-success">Finished</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">@res.FinishStatus</span>
+                    }
+                </td>
+                <td>@res.OverallRank</td>
+                <td>@res.CategoryRank</td>
+            </tr>
+        }
+    </tbody>
+</table>

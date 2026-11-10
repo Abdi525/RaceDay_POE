@@ -1,0 +1,19 @@
+@model POE_P3_WEB.Models.ViewsModels.EnrollmentViewModel
+@{
+    ViewData["Title"] = "Enroll";
+}
+<h2>Event Enrollment</h2>
+<form asp-action="Enroll" method="post" class="col-md-6">
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+    <input asp-for="EventTypeCode" type="hidden" />
+    <div class="mb-3">
+        <label asp-for="MedicalNotes" class="form-label">Medical notes (optional)</label>
+        <textarea asp-for="MedicalNotes" class="form-control" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+        <label asp-for="EmergencyContactNum" class="form-label">Emergency contact number</label>
+        <input asp-for="EmergencyContactNum" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success">Submit Enrollment</button>
+    <a asp-action="BrowseEvents" class="btn btn-secondary">Cancel</a>
+</form>

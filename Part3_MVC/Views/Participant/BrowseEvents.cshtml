@@ -1,0 +1,42 @@
+@model IEnumerable<POE_P3_WEB.Models.ViewsModels.EventViewModel>
+@{
+    ViewData["Title"] = "Browse Events";
+}
+
+<h2 class="mb-4">Upcoming Events</h2>
+@if (TempData["Message"] != null) { <div class="alert alert-success">@TempData["Message"]</div> }
+@if (TempData["Error"] != null) { <div class="alert alert-warning">@TempData["Error"]</div> }
+
+<div class="row">
+@foreach (var ev in Model)
+{
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            @if (!string.IsNullOrWhiteSpace(ev.ImagePath))
+            {
+                <img src="@ev.ImagePath" alt="@ev.EventName banner" class="card-img-top" style="height:180px;object-fit:cover;" />
+            }
+            <div class="card-body">
+                <h5 class="card-title">@ev.EventName</h5>
+                <p class="text-muted small">@ev.EventLocation | @ev.EventDate.ToShortDateString()</p>
+                <p class="card-text">@ev.EventDescription</p>
+            </div>
+            <div class="card-footer bg-white">
+                @if (ev.EventTypes != null && ev.EventTypes.Any())
+                {
+                    @foreach (var category in ev.EventTypes)
+                    {
+                        <a asp-action="Enroll" asp-route-eventTypeCode="@category.EventTypeCode" class="btn btn-success btn-sm w-100 mb-2">
+                            Enroll: @category.EventTypeName
+                        </a>
+                    }
+                }
+                else
+                {
+                    <span class="text-muted small">No enrollment categories are available for this event yet.</span>
+                }
+            </div>
+        </div>
+    </div>
+}
+</div>

@@ -1,0 +1,30 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POE_P3_WEB", "POE_P3_WEB.csproj", "{FAC19FD2-FAD1-4910-9548-11E5A56A5323}"
+EndProject
+
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAC19FD2-FAD1-4910-9548-11E5A56A5323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC19FD2-FAD1-4910-9548-11E5A56A5323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC19FD2-FAD1-4910-9548-11E5A56A5323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC19FD2-FAD1-4910-9548-11E5A56A5323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC62131C-96F9-905A-A07A-14F386F62E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC62131C-96F9-905A-A07A-14F386F62E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC62131C-96F9-905A-A07A-14F386F62E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC62131C-96F9-905A-A07A-14F386F62E11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FAEBA41-9272-4769-BEF9-C8737AF78361}
+	EndGlobalSection
+EndGlobal

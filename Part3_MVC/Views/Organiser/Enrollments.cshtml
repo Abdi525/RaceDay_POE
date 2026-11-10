@@ -1,0 +1,50 @@
+@model IEnumerable<POE_P3_WEB.Models.ViewsModels.EnrollmentAdminViewModel>
+@{
+    ViewData["Title"] = "Event Participants";
+}
+<h2>Event Participants</h2>
+@if (TempData["Message"] != null) { <div class="alert alert-success">@TempData["Message"]</div> }
+@if (TempData["Error"] != null) { <div class="alert alert-warning">@TempData["Error"]</div> }
+@if (!Model.Any())
+{
+    <p class="text-muted">No participants have enrolled in this event yet.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr><th>Participant</th><th>Email</th><th>Category</th><th>Chip</th><th>Emergency Contact</th><th>Medical Notes</th><th>Record Result</th></tr>
+            </thead>
+            <tbody>
+            @foreach (var entry in Model)
+            {
+                <tr>
+                    <td>@entry.Participant?.FirstName @entry.Participant?.LastName</td>
+                    <td>@entry.Participant?.Email</td>
+                    <td>@entry.Category</td>
+                    <td>@entry.ChipNumber</td>
+                    <td>@entry.EmergencyContactNum</td>
+                    <td>@entry.MedicalNotes</td>
+                    <td>
+                        <form asp-action="RecordResult" method="post" class="d-grid gap-1">
+                                <input type="hidden" name="EntranceId" value="@entry.EntranceId" />
+                            <input type="hidden" name="EventId" value="@ViewBag.EventId" />
+                            <select name="FinishStatus" class="form-select form-select-sm">
+                                <option>Finished</option>
+                                <option>Did Not Finish</option>
+                                <option>Disqualified</option>
+                            </select>
+                            <input name="OverallRank" type="number" min="1" placeholder="Overall rank" class="form-control form-control-sm" />
+                            <input name="CategoryRank" type="number" min="1" placeholder="Category rank" class="form-control form-control-sm" />
+                            <input name="AgeGroupRank" type="number" min="1" placeholder="Age group rank" class="form-control form-control-sm" />
+                            <button type="submit" class="btn btn-sm btn-success">Save Result</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+<a asp-action="Dashboard" class="btn btn-secondary">Back to Dashboard</a>

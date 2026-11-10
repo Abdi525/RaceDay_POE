@@ -1,0 +1,6 @@
+@poe11_HostAddress = http://localhost:5122
+
+GET {{poe11_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,31 @@
+@model IEnumerable<POE_P3_WEB.Models.ViewsModels.MyEventViewModel>
+@{
+    ViewData["Title"] = "My Events";
+}
+<h2>My Event Entries</h2>
+@if (TempData["Error"] != null) { <div class="alert alert-warning">@TempData["Error"]</div> }
+@if (!Model.Any())
+{
+    <p class="text-muted">You have not enrolled in any events yet.</p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead><tr><th>Event</th><th>Date</th><th>Location</th><th>Category</th><th>Chip Number</th><th>Payment</th></tr></thead>
+            <tbody>
+            @foreach (var entry in Model)
+            {
+                <tr>
+                    <td>@entry.EventName</td>
+                    <td>@entry.EventDate.ToShortDateString()</td>
+                    <td>@entry.EventLocation</td>
+                    <td>@entry.CategoryName</td>
+                    <td>@entry.ChipNumber</td>
+                    <td>@entry.PaymentStatus</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}

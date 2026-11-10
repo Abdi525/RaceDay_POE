@@ -1,0 +1,36 @@
+@model POE_P3_WEB.Models.ViewsModels.EventViewModel
+@{
+    ViewData["Title"] = "Edit Event";
+}
+<h2>Edit Event</h2>
+<form asp-action="EditEvent" method="post" enctype="multipart/form-data" class="col-md-7">
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+    <input asp-for="EventId" type="hidden" />
+    <input asp-for="ImagePath" type="hidden" />
+    <div class="mb-3">
+        <label asp-for="EventName" class="form-label">Event Name</label>
+        <input asp-for="EventName" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="EventLocation" class="form-label">Location</label>
+        <input asp-for="EventLocation" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="EventDate" class="form-label">Event Date</label>
+        <input asp-for="EventDate" type="date" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="EventDescription" class="form-label">Description</label>
+        <textarea asp-for="EventDescription" class="form-control"></textarea>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+    {
+        <div class="mb-3"><img src="@Model.ImagePath" alt="Current event banner" style="max-width:240px;max-height:140px;object-fit:cover;" /></div>
+    }
+    <div class="mb-3">
+        <label asp-for="BannerImage" class="form-label">Replace banner image (optional)</label>
+        <input asp-for="BannerImage" type="file" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Dashboard" class="btn btn-secondary">Cancel</a>
+</form>

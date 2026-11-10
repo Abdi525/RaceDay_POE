@@ -1,0 +1,20 @@
+﻿@model POE_P3_WEB.Models.ViewsModels.EventViewModel
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4">
+            <h3>Create Event</h3>
+            <form asp-action="CreateEvent" method="post" enctype="multipart/form-data">
+                <div class="mb-3"><label>Event Name</label><input asp-for="EventName" class="form-control" required /></div>
+                <div class="mb-3"><label>Location</label><input asp-for="EventLocation" class="form-control" required /></div>
+                <div class="mb-3"><label>Event Date</label><input asp-for="EventDate" type="date" class="form-control" required /></div>
+                <div class="mb-3"><label>Description</label><textarea asp-for="EventDescription" class="form-control"></textarea></div>
+                <div class="mb-3"><label>Banner Image (Saved locally to wwwroot)</label><input asp-for="BannerImage" type="file" class="form-control" /></div>
+                <button type="submit" class="btn btn-primary w-100">Save Event</button>
+            </form>
+        </div>
+    </div>
+</div>

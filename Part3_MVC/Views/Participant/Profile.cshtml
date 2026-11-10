@@ -1,0 +1,26 @@
+@model POE_P3_WEB.Models.ViewsModels.ProfileViewModel
+@{
+    ViewData["Title"] = "My Profile";
+}
+<h2>My Profile</h2>
+@if (TempData["Message"] != null) { <div class="alert alert-success">@TempData["Message"]</div> }
+@if (TempData["Error"] != null) { <div class="alert alert-warning">@TempData["Error"]</div> }
+<div class="card p-4" style="max-width:600px;">
+    @if (!string.IsNullOrWhiteSpace(Model.ProfileImagePath))
+    {
+        <img src="@Model.ProfileImagePath" alt="Profile image" class="rounded mb-3" style="width:140px;height:140px;object-fit:cover;" />
+    }
+    <p><strong>Name:</strong> @Model.FirstName @Model.LastName</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Phone:</strong> @Model.PhoneNumber</p>
+    <p><strong>Address:</strong> @Model.Address</p>
+    <form asp-action="Profile" method="post" enctype="multipart/form-data">
+        <input asp-for="ProfileImagePath" type="hidden" />
+        <div asp-validation-summary="All" class="text-danger mb-2"></div>
+        <div class="mb-3">
+            <label asp-for="ProfileImage" class="form-label">Profile image</label>
+            <input asp-for="ProfileImage" type="file" accept=".jpg,.jpeg,.png,.gif,.webp" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Update Profile Image</button>
+    </form>
+</div>

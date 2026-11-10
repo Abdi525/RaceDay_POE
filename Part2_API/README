@@ -1,0 +1,16 @@
+This project is an ASP.NET Core Web API for managing the people who are in running, walking, and cycling events.
+This project of mine makes use of C#, SQL Server and Swagger.
+
+User Roles:
+
+Participant - can register and log in, view and update their own profile, browse events and types of events, enroll in events and view their own results.
+Organiser - can manage their own events and types of events, view enrolments for their own events and capture results for those enrolments
+Public visitor - can register, log in and browse events and types of events
+
+Main Folders:
+
+Controllers - API endpoints
+Models - Database models
+RaceDayDatabase - Entity Framework database context
+
+Created an SQL and intergrated it into my code.

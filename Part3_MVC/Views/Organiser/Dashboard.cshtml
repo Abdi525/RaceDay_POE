@@ -1,0 +1,41 @@
+@model IEnumerable<POE_P3_WEB.Models.ViewsModels.EventViewModel>
+@{
+    ViewData["Title"] = "Organiser Dashboard";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Organiser Dashboard</h2>
+    <a asp-action="CreateEvent" class="btn btn-primary">+ Create New Event</a>
+</div>
+@if (TempData["Error"] != null) { <div class="alert alert-warning">@TempData["Error"]</div> }
+@if (TempData["Message"] != null) { <div class="alert alert-success">@TempData["Message"]</div> }
+
+<div class="row">
+@foreach (var ev in Model)
+{
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            @if (!string.IsNullOrWhiteSpace(ev.ImagePath))
+            {
+                <img src="@ev.ImagePath" alt="@ev.EventName banner" class="card-img-top" style="height:180px;object-fit:cover;" />
+            }
+            <div class="card-body">
+                <h5 class="card-title">@ev.EventName</h5>
+                <p class="text-muted small">@ev.EventLocation | @ev.EventDate.ToShortDateString()</p>
+                <p class="card-text">@ev.EventDescription</p>
+            </div>
+            <div class="card-footer bg-white border-top-0">
+                <div class="d-grid gap-2">
+                    <a asp-action="AddCategory" asp-route-eventId="@ev.EventId" class="btn btn-sm btn-outline-secondary">Manage Categories</a>
+                    <a asp-action="Enrollments" asp-route-eventId="@ev.EventId" class="btn btn-sm btn-outline-primary">View Participants / Results</a>
+                    <a asp-action="EditEvent" asp-route-id="@ev.EventId" class="btn btn-sm btn-outline-dark">Edit Event</a>
+                    <form asp-action="DeleteEvent" method="post" onsubmit="return confirm('Delete this event?');">
+                        <input type="hidden" name="eventId" value="@ev.EventId" />
+                        <button type="submit" class="btn btn-sm btn-outline-danger w-100">Delete Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>

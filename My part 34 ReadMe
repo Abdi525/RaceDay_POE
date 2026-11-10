@@ -1,0 +1,6 @@
+The MVC website consumes the REST API in Part2_API. Do not run the MVC project by itself.
+No Docker is included.
+Event banner images and participant profile images are stored locally in Part3_MVC/wwwroot/images.
+Part 3 includes organiser event management, category management, participant enrolment lists,
+result recording, participant event entries, results and profile image upload.
+

@@ -1,0 +1,36 @@
+
+name: RaceDayAU Build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build API and MVC
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore RaceDay_POE.sln
+
+      - name: Build solution
+        run: dotnet build RaceDay_POE.sln --configuration Release --no-restore
+
+      - name: Verify build
+        run: echo "RaceDayAU API and MVC build completed successfully."
